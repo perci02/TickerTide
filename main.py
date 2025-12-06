@@ -13,9 +13,8 @@ from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
 
 
-# -------------------------------------------------
 # Browser setup
-# -------------------------------------------------
+
 def get_driver(headless=False):
     """Create and return a Chrome WebDriver instance."""
     options = Options()
@@ -32,15 +31,15 @@ def get_driver(headless=False):
     return driver
 
 
-# -------------------------------------------------
+
 # Scraping logic
-# -------------------------------------------------
+
 def scrape_top_60_coins(driver):
     """Scrape top 60 cryptocurrencies from CoinMarketCap."""
     url = "https://coinmarketcap.com/"
     driver.get(url)
 
-    # Wait for page and JS to fully load
+    # Wait for page  to fully load
     time.sleep(8)
 
     rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
@@ -88,9 +87,8 @@ def save_to_csv(data, filename="crypto_prices.csv"):
     print(f"Saved {len(data)} records to {filename}")
 
 
-# -------------------------------------------------
 # Excel saving (styled, append)
-# -------------------------------------------------
+
 def save_to_excel_styled(data, filename="crypto_prices.xlsx"):
     """Append data to a styled Excel file (create if not exists)."""
     if not data:
@@ -198,9 +196,9 @@ def save_to_excel_styled(data, filename="crypto_prices.xlsx"):
     print(f"Styled Excel file updated: {filename}")
 
 
-# -------------------------------------------------
+
 # Helper functions for filters (optional)
-# -------------------------------------------------
+
 def parse_price(price_str):
     """'$42,000.12' -> 42000.12"""
     clean = price_str.replace("$", "").replace(",", "").strip()
@@ -239,9 +237,8 @@ def filter_top_gainers_24h(coins, min_change):
     return result
 
 
-# -------------------------------------------------
 # Main
-# -------------------------------------------------
+
 def main():
     driver = get_driver(headless=False)   # change to True for headless mode
 
@@ -252,7 +249,7 @@ def main():
         for coin in coins:
             print(coin)
 
-        # Optional: examples of filters (for terminal output only)
+      
         high_price = filter_by_min_price(coins, 10000)
         print("\nCoins with price >= $10,000:")
         for coin in high_price:
