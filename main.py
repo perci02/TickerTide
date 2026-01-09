@@ -15,7 +15,7 @@ from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
 
 # Browser setup
 
-def get_driver(headless=True):
+def get_driver(headless=False):
     """Create and return a Chrome WebDriver instance."""
     options = Options()
     if headless:
@@ -240,7 +240,7 @@ def filter_top_gainers_24h(coins, min_change):
 # Main
 
 def main():
-    driver = get_driver(headless=False)   # change to True for headless mode
+    driver = get_driver(headless=True)   # change to True for headless mode
 
     try:
         coins = scrape_top_60_coins(driver)
