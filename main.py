@@ -15,7 +15,7 @@ from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
 
 # Browser setup
 
-def get_driver(headless=False):
+def get_driver(headless=True):
     """Create and return a Chrome WebDriver instance."""
     options = Options()
     if headless:
